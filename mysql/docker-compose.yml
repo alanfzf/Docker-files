@@ -19,8 +19,8 @@ services:
       PMA_HOST: mysql
       PMA_PORT: 3306
       PMA_PMADB: dev
-      PMA_USER: dev
-      PMA_PASSWORD: dev
+      PMA_USER: root
+      PMA_PASSWORD: root
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "8080:80"
