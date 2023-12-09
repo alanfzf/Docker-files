@@ -1,0 +1,15 @@
+version: "3.3"
+services:
+  webdav:
+    image: ugeek/webdav:amd64    
+    container_name: webdav
+    restart: unless-stopped
+    volumes:
+      - ./files:/media
+    ports:
+      - "80:80"
+    env_file: .env      
+    environment:
+      - TZ=America/Guatemala
+      - PUID=1000
+      - PGID=1000
