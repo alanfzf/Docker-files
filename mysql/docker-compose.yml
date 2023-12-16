@@ -5,7 +5,7 @@ services:
     container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: dev
+      MYSQL_DATABASE: local_finanssoreal
       MYSQL_USER: dev
       MYSQL_PASSWORD: dev
     ports:
@@ -18,7 +18,7 @@ services:
     environment:
       PMA_HOST: mysql
       PMA_PORT: 3306
-      PMA_PMADB: dev
+      PMA_PMADB: local_finanssoreal
       PMA_USER: root
       PMA_PASSWORD: root
       MYSQL_ROOT_PASSWORD: root
