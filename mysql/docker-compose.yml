@@ -12,6 +12,8 @@ services:
       - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
+    networks:
+      - finanssoreal
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     container_name: phpmyadmin-container
@@ -26,5 +28,10 @@ services:
       - "8080:80"
     depends_on:
       - mysql
+    networks:
+      - finanssoreal
 volumes:
   mysql-data:
+networks:
+  finanssoreal:
+    name: finanssoreal
