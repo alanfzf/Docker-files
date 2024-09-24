@@ -1,4 +1,28 @@
 services:
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/templates/nginx.conf.template
+      - certbot:/etc/letsencrypt
+      - certbot:/var/www/certbot
+    environment:
+      - APP_URL=${MANGA_URL}
+      - NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx
+    networks:
+      - komga
+   certbot:
+    profiles: ["certbot"]
+    image: certbot/certbot
+    volumes:
+      - certbot:/etc/letsencrypt
+      - certbot:/var/www/certbot
+    command: certonly --standalone -w /var/www/certbot --email ${MANGA_EMAIL} --agree-tos --no-eff-email --keep-until-expiring -d ${MANGA_URL}
+    ports:
+      - "80:80"
   komga:
     image: gotson/komga
     container_name: komga
@@ -13,7 +37,13 @@ services:
         source: /etc/timezone
         target: /etc/timezone
         read_only: true
-    ports:
-      - 80:25600
+    # ports:
+    #   - "25600:25600"
     user: "1000:1000"
     restart: unless-stopped
+    networks:
+      - komga
+  networks:
+    komga:
+  volumes:
+    certbot:
