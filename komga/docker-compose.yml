@@ -43,7 +43,7 @@ services:
     restart: unless-stopped
     networks:
       - komga
-  networks:
-    komga:
-  volumes:
-    certbot:
+networks:
+  komga:
+volumes:
+  certbot:
