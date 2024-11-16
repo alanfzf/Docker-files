@@ -2,8 +2,8 @@
 
 ## Certificate
 
-```
-docker compose run --service-ports certbot
+```bash
+docker compose run --rm --service-ports certbot
 ```
 
 
